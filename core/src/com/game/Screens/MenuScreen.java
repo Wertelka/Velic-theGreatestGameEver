@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
-import com.game.Velic;
+import com.game.MainGame;
 import com.game.managers.InputManager;
 
 public class MenuScreen implements Screen {
@@ -30,10 +30,9 @@ public class MenuScreen implements Screen {
     public float width = Gdx.graphics.getWidth();
 
     private Vector3 temp = new Vector3();
-    private Velic game;
-    public MenuScreen(Velic game) {
+    private MainGame game;
+    public MenuScreen(MainGame game) {
         this.game = game;
-
         camera = new OrthographicCamera(width, height);
         camera.setToOrtho(false);
         batch = new SpriteBatch();
@@ -74,6 +73,7 @@ public class MenuScreen implements Screen {
 
     }
 
+
     @Override
     public void resize(int width, int height) {
 
@@ -101,14 +101,14 @@ public class MenuScreen implements Screen {
         batch.dispose();
     }
 
-    public void handleTouch(){
+    private void handleTouch(){
         if(Gdx.input.justTouched()){
             temp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(temp);
             float touchX = temp.x;
             float touchY = temp.y;
             if((touchX>=startButton.getX()) && touchX<= (startButton.getX()+startButton.getWidth()) && (touchY>=startButton.getY()) && touchY<=(startButton.getY()+startButton.getHeight())){
-                game.setScreen(new GameScreen());
+                game.setScreen(new Velic());
 
             }
             if((touchX >= exitButton.getX()) && touchX <= (exitButton.getX() + exitButton.getWidth()) && (touchY >= exitButton.getY()) && touchY <= (exitButton.getY() + exitButton.getHeight())){
@@ -117,3 +117,5 @@ public class MenuScreen implements Screen {
         }
     }
 }
+
+

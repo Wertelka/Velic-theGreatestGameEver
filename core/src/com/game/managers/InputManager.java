@@ -28,8 +28,12 @@ public class InputManager extends InputAdapter {
     public boolean touchDown(int screenX, int screenY, int pointer, int button){
         temp.set(screenX, screenY, 0);
         camera.unproject(temp);
-
-        return true;
+        return false;
     }
-
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button){
+        temp.set(screenX, screenY, 0);
+        camera.unproject(temp);
+        return false;
+    }
 }
